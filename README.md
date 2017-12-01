@@ -6,5 +6,5 @@ My solutions for the 2017 [Advent of code](https://adventofcode.com/) challenge.
 
 - Download the input into the `inputs/day1.txt` file
 - Create a solver into `lib/aoc/day1` named `Aoc.Day1`
-- Make the solver implement a `solve/1` method. Itwill be given the input lines as an input
+- Make the solver implement the `solve1/1` and `solve2/1` methods. They will be given the input lines as an input
 - Run it with the command `mix solve day1`

@@ -5,8 +5,10 @@ defmodule Mix.Tasks.Solve do
   def run([file]) do
     with {:ok, lines} <- read_lines("inputs/#{file}.txt"),
          {:ok, module} <- find_module("Aoc.#{String.capitalize(file)}") do
-      out = apply(module, :solve, [lines])
-      IO.puts(out)
+      out1 = apply(module, :solve1, [lines])
+      out2 = apply(module, :solve2, [lines])
+      IO.puts("Solution 1 : #{out1}")
+      IO.puts("Solution 2 : #{out2}")
     else
       {:error, :no_file} ->
         IO.puts("No input found at inputs/#{file}.txt")

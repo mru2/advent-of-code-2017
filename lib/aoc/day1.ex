@@ -15,13 +15,8 @@ defmodule Aoc.Day1 do
 
   defp to_int_list(string) do
     string
-    |> String.split("")
-    |> Enum.flat_map(fn char ->
-         case Integer.parse(char) do
-           :error -> []
-           {n, _} -> [n]
-         end
-       end)
+    |> String.split("", trim: true)
+    |> Enum.map(&Aoc.to_int/1)
   end
 
   defp to_neighbour_pairs(list = [h | t]) do

@@ -7,8 +7,8 @@ defmodule Mix.Tasks.Solve do
          {:ok, module} <- find_module("Aoc.#{String.capitalize(file)}") do
       out1 = apply(module, :solve1, [lines])
       out2 = apply(module, :solve2, [lines])
-      IO.puts("Solution 1 : #{out1}")
-      IO.puts("Solution 2 : #{out2}")
+      IO.puts("Solution 1 : #{inspect(out1)}")
+      IO.puts("Solution 2 : #{inspect(out2)}")
     else
       {:error, :no_file} ->
         IO.puts("No input found at inputs/#{file}.txt")
@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Solve do
         {:error, :no_file}
 
       true ->
-        lines = File.stream!(file) |> Enum.to_list()
+        lines = File.read!(file) |> String.split("\n", trim: true)
         {:ok, lines}
     end
   end

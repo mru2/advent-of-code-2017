@@ -4,9 +4,10 @@ defmodule Mix.Tasks.Solve do
   @shortdoc "Solves a given day : `mix solve day1`"
   def run([file]) do
     with {:ok, lines} <- read_lines("inputs/#{file}.txt"),
-         {:ok, module} <- find_module("Aoc.#{String.capitalize(file)}") do
-      out1 = apply(module, :solve1, [lines])
-      out2 = apply(module, :solve2, [lines])
+         {:ok, module} <- find_module("Aoc.#{String.capitalize(file)}"),
+         input <- apply(module, :parse_input, [lines]) do
+      out1 = apply(module, :solve1, [input])
+      out2 = apply(module, :solve2, [input])
       IO.puts("Solution 1 : #{inspect(out1)}")
       IO.puts("Solution 2 : #{inspect(out2)}")
     else

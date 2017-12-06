@@ -1,14 +1,17 @@
 defmodule Aoc.Day4 do
-  def solve1(inputs) do
-    inputs
+  def parse_input(input) do
+    input
     |> Enum.map(&to_word_list/1)
+  end
+
+  def solve1(word_lists) do
+    word_lists
     |> Enum.filter(&all_uniques?/1)
     |> length
   end
 
-  def solve2(inputs) do
-    inputs
-    |> Enum.map(&to_word_list/1)
+  def solve2(word_lists) do
+    word_lists
     |> sort_chars
     |> Enum.filter(&all_uniques?/1)
     |> length

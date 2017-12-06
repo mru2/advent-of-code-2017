@@ -8,11 +8,10 @@ defmodule Aoc.Day3.Spiral do
   end
 
   def next(spiral = %Spiral{values: values, current: current}) do
-    value = values[current]
     {[values[current]], iterate(spiral)}
   end
 
-  defp iterate(spiral = %Spiral{values: values, direction: direction, current: current}) do
+  defp iterate(spiral) do
     spiral
     |> update_direction
     |> update_current
@@ -44,8 +43,8 @@ defmodule Aoc.Day3.Spiral do
   defp next_direction(dir, _), do: dir
 
   # Update values : sum neighbour values
-  defp update_values(spiral = %Spiral{values: values, current: current = {x, y}}) do
-    new_value = %Spiral{spiral | values: Map.put(values, current, compute_value(values, current))}
+  defp update_values(spiral = %Spiral{values: values, current: current}) do
+    %Spiral{spiral | values: Map.put(values, current, compute_value(values, current))}
   end
 
   defp compute_value(values, {x, y}) do

@@ -25,15 +25,18 @@ defmodule Aoc.Day5 do
     end
   end
 
-  def solve1(input) do
+  def parse_input(input) do
     input
     |> Enum.map(&Aoc.to_int/1)
+  end
+
+  def solve1(input) do
+    input
     |> count_steps(&update1/1)
   end
 
   def solve2(input) do
     input
-    |> Enum.map(&Aoc.to_int/1)
     |> count_steps(&update2/1)
   end
 

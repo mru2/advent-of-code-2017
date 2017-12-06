@@ -1,4 +1,6 @@
 defmodule Aoc.Day0 do
+  def parse_input(input), do: input
+
   def solve1(input) do
     "Line count is #{length(input)}"
   end

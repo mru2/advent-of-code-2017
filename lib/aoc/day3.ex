@@ -1,19 +1,18 @@
 defmodule Aoc.Day3 do
   alias Aoc.Day3.Spiral
 
-  def solve1([input]) do
-    input
-    |> Aoc.to_int()
+  def parse_input([input]) do
+    Aoc.to_int(input)
+  end
+
+  def solve1(value) do
+    value
     |> distance_to_origin
   end
 
-  def solve2([input]) do
-    max =
-      input
-      |> Aoc.to_int()
-
+  def solve2(value) do
     Stream.resource(&Spiral.new/0, &Spiral.next/1, & &1)
-    |> Stream.drop_while(&(&1 <= max))
+    |> Stream.drop_while(&(&1 <= value))
     |> Enum.take(1)
     |> hd
   end

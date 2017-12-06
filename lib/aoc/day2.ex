@@ -1,23 +1,21 @@
 defmodule Aoc.Day2 do
-  def solve1(rows) do
+  def parse_input(rows) do
     rows
-    |> to_matrix
+    |> Enum.map(fn row ->
+         row |> String.split(~r/\s+/, trim: true) |> Enum.map(&Aoc.to_int/1)
+       end)
+  end
+
+  def solve1(matrix) do
+    matrix
     |> Enum.map(&checksum_minmax/1)
     |> Enum.sum()
   end
 
-  def solve2(rows) do
-    rows
-    |> to_matrix
+  def solve2(matrix) do
+    matrix
     |> Enum.map(&checksum_divide/1)
     |> Enum.sum()
-  end
-
-  defp to_matrix(rows) do
-    rows
-    |> Enum.map(fn row ->
-         row |> String.split(~r{\s}, trim: true) |> Enum.map(&Aoc.to_int/1)
-       end)
   end
 
   defp checksum_minmax(row) do

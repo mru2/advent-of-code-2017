@@ -11,7 +11,7 @@ defmodule Aoc.Day6 do
   end
 
   def solve2(values) do
-    {list, count, cache} = do_solve(values, 0, MapSet.new())
+    {list, _count, _cache} = do_solve(values, 0, MapSet.new())
     {_list, count, _cache} = do_solve(iterate(list), 1, MapSet.new([list]))
     count
   end
